@@ -1,0 +1,61 @@
+materials:
+  lambertian_material:
+    type: "lambertian"
+    color: [float, float, float] # RGB values
+
+  metal_material:
+    type: "metal"
+    color: [float, float, float] # RGB values
+    fuzziness: float
+
+  dielectric_material:
+    type: "dielectric"
+    index_of_refraction: float
+
+  diffuse_light_material:
+    type: "diffuse_light"
+    color: [float, float, float] # RGB values
+
+objects:
+  - type: "sphere"
+    parameters:
+      center: [float, float, float] # XYZ coordinates
+      radius: float
+      material: dielectric_material
+
+  - type: "box"
+    parameters:
+      a: [float, float, float] # XYZ coordinates of one corner
+      b: [float, float, float] # XYZ coordinates of opposite corner
+      material: metal_material
+
+  - type: "quad"
+    parameters:
+      Q: [float, float, float] # XYZ coordinates of one corner
+      u: [float, float, float] # XYZ vector from Q
+      v: [float, float, float] # XYZ vector from Q, perpendicular to u
+      material: lambertian_material
+
+  - type: "quad"
+    parameters:
+      Q: [float, float, float] # XYZ coordinates of one corner
+      u: [float, float, float] # XYZ vector from Q
+      v: [float, float, float] # XYZ vector from Q, perpendicular to u
+      material: diffuse_light_material
+
+image:
+  aspect_ratio: float                   # Aspect ratio (width / height)
+  image_width: int                      # Image width
+  samples_per_pixel: int                # Samples per pixel
+  max_depth: int                        # Maximum ray depth
+  background: [float, float, float]     # Background color
+
+camera:
+  vfov: float                           # Vertical field of view in degrees
+  look_from:  [float, float, float]     # Camera's position (x, y, z)
+  look_at:  [float, float, float]       # Point the camera is looking at (x, y, z)
+  vup:  [float, float, float]           # Up direction of the camera (x, y, z)
+
+depth_of_field:
+  defocus_angle: float                  # Defocus angle (if applicable)
+  focus_dist: float                     # Focus distance (if applicable)
